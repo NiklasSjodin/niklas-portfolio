@@ -18,7 +18,24 @@ function linkClasses(active: boolean) {
 export function Header() {
   const pathname = usePathname();
   const [open, setOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
   const menuId = useId();
+  const blendWithPage = pathname === "/" && !open && !scrolled;
+
+  useEffect(() => {
+    if (pathname !== "/") {
+      return;
+    }
+
+    const onScroll = () => setScrolled(window.scrollY > 12);
+    const frame = requestAnimationFrame(onScroll);
+    window.addEventListener("scroll", onScroll, { passive: true });
+
+    return () => {
+      cancelAnimationFrame(frame);
+      window.removeEventListener("scroll", onScroll);
+    };
+  }, [pathname]);
 
   useEffect(() => {
     if (!open) {
@@ -36,7 +53,13 @@ export function Header() {
   }, [open]);
 
   return (
-    <header className="sticky top-0 z-40 border-b border-border/80 bg-background/90 backdrop-blur-md">
+    <header
+      className={`sticky top-0 z-40 transition-colors duration-300 ${
+        blendWithPage
+          ? "bg-transparent"
+          : "border-b border-border/80 bg-background/80 backdrop-blur-md"
+      }`}
+    >
       <Container className="flex h-16 items-center justify-between gap-4">
         <Link
           href="/"

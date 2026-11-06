@@ -6,12 +6,12 @@ export default function HomePage() {
   return (
     <Section
       ariaLabelledBy="hero-heading"
-      className="relative overflow-hidden"
+      className="relative"
       containerClassName="relative"
     >
       <div
         aria-hidden
-        className="pointer-events-none absolute inset-x-0 top-0 -z-10 h-72 bg-[radial-gradient(ellipse_at_top,color-mix(in_srgb,var(--accent)_18%,transparent),transparent_70%)]"
+        className="pointer-events-none absolute -top-72 left-1/2 -z-10 h-[34rem] w-[min(56rem,150%)] -translate-x-1/2 rounded-full bg-accent/15 blur-[120px]"
       />
 
       <p className="mb-6 font-mono text-xs tracking-[0.22em] text-accent uppercase">

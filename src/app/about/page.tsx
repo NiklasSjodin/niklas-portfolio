@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import { Dumbbell, House, IceCreamCone } from "lucide-react";
 import { Section } from "@/components/Section";
 
@@ -40,7 +41,7 @@ export default function AboutPage() {
   return (
     <>
       <Section ariaLabelledBy="about-heading" className="pt-14 sm:pt-20">
-        <div className="grid gap-14 md:grid-cols-[minmax(0,1fr)_minmax(0,20rem)] md:items-end lg:gap-20">
+        <div className="grid gap-14 md:grid-cols-[minmax(0,1fr)_minmax(0,18rem)] md:items-start lg:grid-cols-[minmax(0,1fr)_minmax(0,20rem)] lg:gap-20">
           <div>
             <p className="mb-6 font-mono text-xs tracking-[0.22em] text-accent uppercase">
               About
@@ -73,27 +74,17 @@ export default function AboutPage() {
             </div>
           </div>
 
-          <figure className="m-0">
-            <div
-              role="img"
-              aria-label="Portrait placeholder for Niklas"
-              className="relative flex aspect-[4/5] w-full items-center justify-center overflow-hidden rounded-sm border border-border bg-surface"
-            >
-              <div
-                aria-hidden
-                className="absolute inset-0 bg-[radial-gradient(ellipse_at_30%_20%,color-mix(in_srgb,var(--accent)_22%,transparent),transparent_65%)]"
+          <figure className="m-0 md:mt-14">
+            <div className="relative aspect-[3/4] overflow-hidden rounded-sm border border-border bg-surface">
+              <Image
+                src="/niklas.jpg"
+                alt="Portrait of Niklas"
+                fill
+                priority
+                sizes="(min-width: 1024px) 20rem, (min-width: 768px) 18rem, 100vw"
+                className="object-cover"
               />
-              <div
-                aria-hidden
-                className="absolute inset-4 border border-border/60"
-              />
-              <span className="relative font-display text-7xl text-champagne/80">
-                N
-              </span>
             </div>
-            <figcaption className="mt-4 font-mono text-xs tracking-[0.18em] text-text-muted uppercase">
-              Portrait to come
-            </figcaption>
           </figure>
         </div>
       </Section>
