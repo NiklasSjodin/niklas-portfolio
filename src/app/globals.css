@@ -1,0 +1,49 @@
+@import "tailwindcss";
+
+:root {
+  --background: #151a18;
+  --surface: #202925;
+  --accent: #78917d;
+  --champagne: #d8c6a0;
+  --text: #f0eee7;
+  --text-muted: color-mix(in srgb, var(--text) 68%, transparent);
+  --border: color-mix(in srgb, var(--accent) 28%, transparent);
+  --ring: color-mix(in srgb, var(--champagne) 70%, transparent);
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-surface: var(--surface);
+  --color-accent: var(--accent);
+  --color-champagne: var(--champagne);
+  --color-text: var(--text);
+  --color-text-muted: var(--text-muted);
+  --color-border: var(--border);
+  --color-ring: var(--ring);
+  --font-sans: var(--font-geist-sans);
+  --font-display: var(--font-instrument-serif);
+  --font-mono: var(--font-geist-mono);
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  html {
+    @apply scroll-smooth;
+  }
+
+  body {
+    @apply bg-background text-text font-sans antialiased;
+  }
+
+  ::selection {
+    background: color-mix(in srgb, var(--accent) 45%, transparent);
+    color: var(--text);
+  }
+
+  :focus-visible {
+    @apply outline-2 outline-offset-2 outline-ring;
+  }
+}
