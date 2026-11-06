@@ -1,3 +1,5 @@
+export const siteUrl = "https://niklassjodin.se";
+
 export const siteContact: {
   email?: string;
   linkedin: string;

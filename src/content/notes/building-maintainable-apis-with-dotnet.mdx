@@ -1,0 +1,67 @@
+---
+title: "Building Maintainable APIs with .NET"
+description: "An outline for notes on keeping ASP.NET APIs readable, testable and easy to change over time."
+date: "2026-11-05"
+category: "Engineering"
+tags: ["dotnet", "csharp", "api-design", "testing"]
+status: "draft"
+---
+
+This is a starter draft. It lays out the topics I want to cover on keeping .NET APIs maintainable, and marks every place where my own experience still has to go in.
+
+## What "maintainable" means here
+
+A working definition makes the rest of the note easier to write. For an API, that tends to come down to how easily the next person can read it, change it and trust it.
+
+<NeedsInput title="Definition">
+
+Write my own definition, ideally grounded in a real codebase: what made an API easy or painful to change?
+
+</NeedsInput>
+
+## Starting small
+
+The smallest useful endpoint in ASP.NET Core is a few lines. This placeholder only shows how code looks in notes; it is not an example from a real project.
+
+```csharp
+// Placeholder sketch. Replace with a real, tested example.
+var app = WebApplication.CreateBuilder(args).Build();
+
+app.MapGet("/health", () => Results.Ok(new { status = "ok" }));
+
+app.Run();
+```
+
+<NeedsInput title="Project structure">
+
+Describe how I actually structure an API: folders, layers, where validation and mapping live, and why.
+
+</NeedsInput>
+
+## Contracts and change
+
+- How request and response shapes are kept stable.
+- How breaking changes are introduced, versioned and communicated.
+- How the written contract and the code are kept in step.
+
+<NeedsInput title="Contracts in practice">
+
+Pick one or two real examples of changing a contract safely, or of getting it wrong, and write down what I would repeat or avoid.
+
+</NeedsInput>
+
+## Testing
+
+<NeedsInput title="Testing approach">
+
+Cover what I test at which level, what I leave untested on purpose, and what has earned its place in the test suite. No numbers unless I have measured them.
+
+</NeedsInput>
+
+## Things I'd tell my past self
+
+<NeedsInput title="Lessons">
+
+A short, honest list drawn from real work.
+
+</NeedsInput>

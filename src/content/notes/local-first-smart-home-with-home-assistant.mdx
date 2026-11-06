@@ -1,0 +1,71 @@
+---
+title: "A Local-First Smart Home with Home Assistant"
+description: "An outline for notes on building a smart home that keeps working locally, using Home Assistant."
+date: "2026-11-04"
+category: "Smart Home & Automation"
+tags: ["home-assistant", "automation", "local-first", "self-hosting"]
+status: "draft"
+---
+
+This is a starter draft. It sketches what I want to write about a local-first smart home, and leaves every claim about my own setup to be filled in.
+
+## What local-first means to me
+
+The idea is that the home keeps doing its job without depending on someone else's servers. How strictly to hold that line is a design choice.
+
+<NeedsInput title="My definition">
+
+Explain in my own words what local-first means in my home, and which trade-offs I accept.
+
+</NeedsInput>
+
+## The setup
+
+<NeedsInput title="Hardware and software">
+
+Describe what actually runs where: the hub, the devices, the protocols, how it is installed and how it is backed up. Only list what I really use.
+
+</NeedsInput>
+
+## An example automation
+
+Automations in Home Assistant are written in YAML. The block below is a placeholder with made-up entity names, there to show how configuration looks in notes. It is not taken from my setup.
+
+```yaml
+# Placeholder sketch. Replace with a real automation from my setup.
+alias: "Example automation"
+triggers:
+  - trigger: state
+    entity_id: binary_sensor.example
+    to: "on"
+actions:
+  - action: light.turn_on
+    target:
+      entity_id: light.example
+```
+
+<NeedsInput title="Real automations">
+
+Swap in one or two automations I actually run, and say why they exist and what I would change.
+
+</NeedsInput>
+
+## What I'd do differently
+
+<NeedsInput title="Lessons">
+
+Write down mistakes, dead ends and things that turned out simpler than expected.
+
+</NeedsInput>
+
+## Open questions
+
+- Which parts are worth the effort of running locally, and which are not?
+- How do I keep it reliable enough that others in the home trust it?
+- What would I automate next, and what should stay manual?
+
+<NeedsInput title="Where this goes next">
+
+Pick the questions worth a follow-up note.
+
+</NeedsInput>
