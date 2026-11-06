@@ -78,34 +78,32 @@ export function Header() {
         </button>
       </Container>
 
-      <div
-        id={menuId}
-        hidden={!open}
-        className="border-t border-border bg-surface md:hidden"
-      >
-        <nav aria-label="Mobile">
-          <Container className="py-4">
-            <ul className="flex flex-col gap-1">
-              {navItems.map((item) => {
-                const active = pathname === item.href;
+      {open ? (
+        <div id={menuId} className="border-t border-border bg-surface md:hidden">
+          <nav aria-label="Mobile">
+            <Container className="py-4">
+              <ul className="flex flex-col gap-1">
+                {navItems.map((item) => {
+                  const active = pathname === item.href;
 
-                return (
-                  <li key={item.href}>
-                    <Link
-                      href={item.href}
-                      className={`${linkClasses(active)} block py-2`}
-                      aria-current={active ? "page" : undefined}
-                      onClick={() => setOpen(false)}
-                    >
-                      {item.label}
-                    </Link>
-                  </li>
-                );
-              })}
-            </ul>
-          </Container>
-        </nav>
-      </div>
+                  return (
+                    <li key={item.href}>
+                      <Link
+                        href={item.href}
+                        className={`${linkClasses(active)} block py-2`}
+                        aria-current={active ? "page" : undefined}
+                        onClick={() => setOpen(false)}
+                      >
+                        {item.label}
+                      </Link>
+                    </li>
+                  );
+                })}
+              </ul>
+            </Container>
+          </nav>
+        </div>
+      ) : null}
     </header>
   );
 }
