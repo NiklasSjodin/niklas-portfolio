@@ -22,7 +22,7 @@ export default function HomePage() {
         id="hero-heading"
         className="max-w-3xl font-display text-5xl leading-[1.1] tracking-tight text-text sm:text-6xl lg:text-7xl"
       >
-        Niklas — Software Developer
+        Niklas — Software Engineer
       </h1>
 
       <p className="mt-5 max-w-xl font-display text-2xl text-champagne sm:text-3xl">

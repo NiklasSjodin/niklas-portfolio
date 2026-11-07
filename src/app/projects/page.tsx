@@ -1,20 +1,56 @@
 import type { Metadata } from "next";
-import { PageIntro } from "@/components/PageIntro";
+import { ProjectCard } from "@/components/ProjectCard";
 import { Section } from "@/components/Section";
+import { getAllProjects } from "@/lib/projects";
 
 export const metadata: Metadata = {
   title: "Projects",
-  description: "Selected software projects by Niklas.",
+  description:
+    "Selected software projects by Niklas, including sample outlines that will be replaced with real work.",
+  alternates: { canonical: "/projects" },
 };
 
 export default function ProjectsPage() {
+  const projects = getAllProjects();
+  const hasSamples = projects.some((project) => project.sample);
+
   return (
     <Section ariaLabelledBy="projects-heading">
-      <PageIntro
-        id="projects-heading"
-        title="Projects"
-        description="Selected work will live here — backend systems, APIs, and automation I am proud of. Content is on the way."
-      />
+      <header className="max-w-2xl">
+        <p className="mb-3 font-mono text-xs tracking-[0.2em] text-accent uppercase">
+          Selected work
+        </p>
+        <h1
+          id="projects-heading"
+          className="font-display text-4xl tracking-tight text-text sm:text-5xl"
+        >
+          Projects
+        </h1>
+        <p className="mt-5 text-lg leading-relaxed text-text-muted">
+          Things I build and explore: backend systems, tooling and automation.
+          Each entry is a short account of what it is and where it stands.
+        </p>
+        {hasSamples ? (
+          <p className="mt-4 text-sm leading-relaxed text-text-muted">
+            Entries marked <span className="text-champagne">Sample</span> are
+            outlines. The real write-up still has to be filled in.
+          </p>
+        ) : null}
+      </header>
+
+      {projects.length > 0 ? (
+        <ul className="mt-14 grid gap-6 sm:mt-20 sm:grid-cols-2">
+          {projects.map((project) => (
+            <li key={project.slug} className="min-w-0">
+              <ProjectCard project={project} />
+            </li>
+          ))}
+        </ul>
+      ) : (
+        <p className="mt-14 text-text-muted">
+          No projects listed yet. Check back soon.
+        </p>
+      )}
     </Section>
   );
 }

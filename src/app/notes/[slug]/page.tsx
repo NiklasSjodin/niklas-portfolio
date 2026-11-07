@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
+import { Suspense } from "react";
 import { NoteContent } from "@/components/NoteContent";
 import { NoteHeader } from "@/components/NoteHeader";
 import { RelatedNotes } from "@/components/RelatedNotes";
@@ -48,7 +49,19 @@ export async function generateMetadata({
   };
 }
 
-export default async function NotePage({ params }: PageProps<"/notes/[slug]">) {
+export default function NotePage({ params }: PageProps<"/notes/[slug]">) {
+  return (
+    <Section>
+      <Suspense fallback={<NoteArticleFallback />}>
+        <NoteArticle params={params} />
+      </Suspense>
+    </Section>
+  );
+}
+
+async function NoteArticle({
+  params,
+}: Pick<PageProps<"/notes/[slug]">, "params">) {
   const { slug } = await params;
   const note = await getNoteBySlug(slug);
 
@@ -62,7 +75,7 @@ export default async function NotePage({ params }: PageProps<"/notes/[slug]">) {
   const relatedProjects = getProjectsBySlugs(note.relatedProjects);
 
   return (
-    <Section>
+    <>
       <article aria-labelledby={titleId} className="max-w-3xl">
         <NoteHeader note={note} titleId={titleId} />
 
@@ -76,6 +89,21 @@ export default async function NotePage({ params }: PageProps<"/notes/[slug]">) {
       <div className="max-w-3xl">
         <RelatedNotes notes={relatedNotes} />
       </div>
-    </Section>
+    </>
+  );
+}
+
+function NoteArticleFallback() {
+  return (
+    <div className="max-w-2xl" aria-busy="true">
+      <p className="sr-only" role="status">
+        Loading note
+      </p>
+      <div className="h-3 w-24 rounded-full bg-surface" />
+      <div className="mt-6 h-3 w-32 rounded-full bg-surface" />
+      <div className="mt-6 h-14 w-4/5 rounded bg-surface" />
+      <div className="mt-6 h-4 w-full rounded bg-surface" />
+      <div className="mt-3 h-4 w-3/4 rounded bg-surface" />
+    </div>
   );
 }

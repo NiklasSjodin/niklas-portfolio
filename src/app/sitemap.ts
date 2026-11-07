@@ -1,6 +1,7 @@
 import type { MetadataRoute } from "next";
 import { navItems } from "@/lib/navigation";
 import { getAllNotes } from "@/lib/notes";
+import { getAllProjects } from "@/lib/projects";
 import { siteUrl } from "@/lib/site";
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
@@ -16,5 +17,12 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       lastModified: new Date(`${note.date}T00:00:00Z`),
     }));
 
-  return [...pages, ...notes];
+  // Sample outlines are marked noindex, so they stay out of the sitemap too.
+  const projectPages = getAllProjects()
+    .filter((project) => !project.sample)
+    .map((project) => ({
+      url: `${siteUrl}/projects/${project.slug}`,
+    }));
+
+  return [...pages, ...notes, ...projectPages];
 }

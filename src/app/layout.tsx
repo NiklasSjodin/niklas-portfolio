@@ -24,11 +24,11 @@ const instrumentSerif = Instrument_Serif({
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
   title: {
-    default: "Niklas — Software Developer",
+    default: "Niklas — Software Engineer",
     template: "%s · Niklas",
   },
   description:
-    "Personal portfolio of Niklas — software developer focused on C#/.NET, backend engineering, APIs, testing and automation.",
+    "Personal portfolio of Niklas — software engineer focused on C#/.NET, backend engineering, APIs, testing and automation.",
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {

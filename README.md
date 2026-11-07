@@ -34,8 +34,10 @@ Open [http://localhost:3000](http://localhost:3000).
 ## Project structure
 
 - `src/app` — routes and root layout
-- `src/components` — reusable UI (`Container`, `Button`, `Section`, navigation, note components)
+- `src/components` — reusable UI (`Container`, `Button`, `Section`, navigation, note and project components)
 - `src/content/notes` — Notes, one `.mdx` file per note
+- `src/content/projects.ts` — project entries
+- `src/types/project.ts` — the `Project` model
 - `src/lib` — shared constants (navigation, site) and the notes/projects loaders
 
 No database, CMS, authentication, or backend API is included.
@@ -66,6 +68,14 @@ Reading time is calculated automatically. In the body, use normal Markdown plus
 fenced code blocks (add a language, e.g. ` ```csharp `). In starter drafts,
 wrap sections that still need real content in `<NeedsInput title="...">`.
 
-`relatedProjects` takes project slugs from `src/lib/projects.ts`. Slugs that are
-not in that registry are ignored, so a note never links to a project that does
-not exist. The registry is empty until the Projects page has real content.
+`relatedProjects` takes slugs from `src/content/projects.ts`. Slugs that are
+not in that list are ignored, so a note never links to a project that does
+not exist.
+
+## Editing projects
+
+Projects live in `src/content/projects.ts`, in display order. The `slug` is
+the URL (`developer-assistant` is `/projects/developer-assistant`). Set
+`sample` to `false` once an entry describes real work. Add `links.github` or
+`links.demo` only when that URL exists; leave them out otherwise. Invalid
+entries fail the build and name the slug.
