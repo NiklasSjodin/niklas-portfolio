@@ -1,4 +1,4 @@
-export const siteUrl = "https://niklassjodin.se";
+export const siteUrl = "https://niklasjodin.se";
 
 export const siteContact: {
   email?: string;

@@ -6,12 +6,12 @@ export default function HomePage() {
   return (
     <Section
       ariaLabelledBy="hero-heading"
-      className="relative"
+      className="relative overflow-x-clip"
       containerClassName="relative"
     >
       <div
         aria-hidden
-        className="pointer-events-none absolute -top-72 left-1/2 -z-10 h-[34rem] w-[min(56rem,150%)] -translate-x-1/2 rounded-full bg-accent/15 blur-[120px]"
+        className="pointer-events-none absolute -top-72 left-1/2 -z-10 h-[34rem] w-full max-w-4xl -translate-x-1/2 rounded-full bg-accent/15 blur-[80px] sm:blur-[120px]"
       />
 
       <p className="mb-6 font-mono text-xs tracking-[0.22em] text-accent uppercase">
