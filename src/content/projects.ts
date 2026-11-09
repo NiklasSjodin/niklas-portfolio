@@ -10,21 +10,18 @@ import type { Project } from "@/types/project";
  */
 export const projects: readonly Project[] = [
   {
-    slug: "developer-assistant",
-    title: "Developer Assistant",
+    slug: "glass-atlas",
+    title: "Glass Atlas",
     summary:
-      "Sample entry. A developer productivity and automation project, still to be written up.",
+      "Personal ice cream catalog and tasting journal with weighted ratings, built as a polished product rather than a generic CRUD demo.",
     description:
-      "Sample outline for Developer Assistant, a project about developer productivity and automation. The real scope, stack and links are not written yet.",
+      "Glass Atlas is a private, single-user app for tracking ice cream products and recording tasting sessions: dates, notes, optional scores across taste, texture, sweetness, appearance and value, plus catalog search and filters. The stack is a Next.js App Router frontend, an ASP.NET Core Web API on .NET 10, PostgreSQL via Docker Compose, and automated tests on both sides. Foundation, product catalog and tasting journal milestones are implemented end to end; dashboard, rankings and deployment are next. The GitHub repository is private during active development.",
     status: "in-progress",
-    sample: true,
-    tags: ["automation", "developer-tools"],
-    outline: [
-      "The problem it is meant to help with.",
-      "What exists today, if anything.",
-      "The stack, and how it is run.",
-      "A repository or demo link, once there is one.",
-    ],
+    sample: false,
+    tags: ["nextjs", "dotnet", "postgresql", "full-stack"],
+    links: {
+      github: "https://github.com/NiklasSjodin/glass-atlas",
+    },
   },
   {
     slug: "smart-home-automation",
