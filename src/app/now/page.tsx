@@ -71,20 +71,6 @@ export default function NowPage() {
             </li>
           ))}
         </ol>
-
-        <p className="mt-12 text-sm leading-relaxed text-text-muted">
-          This is a{" "}
-          <a
-            href="https://nownownow.com/about"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-champagne underline decoration-champagne/40 underline-offset-4 transition-colors hover:decoration-champagne"
-          >
-            now page
-            <span className="sr-only"> (opens in a new tab)</span>
-          </a>
-          , an idea borrowed from many personal sites.
-        </p>
       </div>
     </Section>
   );

@@ -41,7 +41,7 @@ export default async function HomePage() {
 
           <div>
             <p className="mb-6 font-mono text-xs tracking-[0.22em] text-accent uppercase">
-              Hej, I’m
+              Hello, I’m
             </p>
 
             <h1
