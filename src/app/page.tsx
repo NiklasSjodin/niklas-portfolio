@@ -28,13 +28,13 @@ export default async function HomePage() {
         />
 
         <div className="grid gap-10 md:grid-cols-[minmax(0,1fr)_auto] md:items-center md:gap-16">
-          <div className="relative size-28 overflow-hidden rounded-full border border-border bg-surface md:order-last md:size-60 lg:size-72">
+          <div className="relative hidden size-60 overflow-hidden rounded-full border border-border bg-surface md:order-last md:block lg:size-72">
             <Image
               src="/niklas.jpg"
               alt="Portrait of Niklas Sjödin"
               fill
               priority
-              sizes="(min-width: 1024px) 18rem, (min-width: 768px) 15rem, 7rem"
+              sizes="(min-width: 1024px) 18rem, 15rem"
               className="object-cover"
             />
           </div>
