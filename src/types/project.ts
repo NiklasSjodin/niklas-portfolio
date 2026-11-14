@@ -15,6 +15,22 @@ export type ProjectLinks = {
   demo?: string;
 };
 
+/** A titled block of prose on the project page, e.g. "What it does". */
+export type ProjectSection = {
+  heading: string;
+  /** Plain text. Separate paragraphs with a blank line. */
+  body: string;
+};
+
+/** A screenshot stored in `public/`, e.g. `/projects/glass-atlas/catalog.png`. */
+export type ProjectImage = {
+  src: string;
+  alt: string;
+  width: number;
+  height: number;
+  caption?: string;
+};
+
 export type Project = {
   /** URL slug. Lowercase kebab-case. Served at `/projects/[slug]`. */
   slug: string;
@@ -25,6 +41,10 @@ export type Project = {
   description: string;
   status: ProjectStatus;
   tags: string[];
+  /** Optional write-up shown on the project page, in order. */
+  sections?: ProjectSection[];
+  /** Optional screenshots shown on the project page, in order. */
+  images?: ProjectImage[];
   /**
    * Prompts for sections that still need real content. Rendered as a
    * "still to write" list. Remove once the write-up is real.

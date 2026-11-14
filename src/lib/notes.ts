@@ -8,6 +8,7 @@ import {
   type NoteCategory,
   type NoteFrontmatter,
 } from "@/lib/note-model";
+import { showUnfinished } from "@/lib/visibility";
 
 export { formatNoteDate, noteCategories } from "@/lib/note-model";
 export type {
@@ -153,7 +154,7 @@ function parseNote(slug: string, raw: string): NoteWithContent {
  * is treated as a predictable value and is included in the static shell,
  * whereas an awaited `fs/promises` read would count as uncached I/O.
  */
-const loadNotes = cache((): NoteWithContent[] => {
+const loadAllNotes = cache((): NoteWithContent[] => {
   const slugs = readdirSync(NOTES_DIR)
     .filter((file) => file.endsWith(NOTE_EXTENSION))
     .map((file) => file.slice(0, -NOTE_EXTENSION.length));
@@ -174,6 +175,13 @@ const loadNotes = cache((): NoteWithContent[] => {
     );
 });
 
+/** Notes visible in this build: starter drafts are left out of production. */
+const loadNotes = cache((): NoteWithContent[] =>
+  loadAllNotes().filter(
+    (note) => showUnfinished || note.status === "published",
+  ),
+);
+
 function withoutContent({ content, ...note }: NoteWithContent): Note {
   void content;
   return note;
@@ -183,8 +191,12 @@ export async function getAllNotes(): Promise<Note[]> {
   return loadNotes().map(withoutContent);
 }
 
+/**
+ * Every note file's slug, drafts included. Used for `generateStaticParams`,
+ * which must return at least one entry; a hidden draft then renders as 404.
+ */
 export async function getNoteSlugs(): Promise<string[]> {
-  return loadNotes().map((note) => note.slug);
+  return loadAllNotes().map((note) => note.slug);
 }
 
 /**

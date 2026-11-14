@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { Suspense } from "react";
@@ -42,7 +43,7 @@ export async function generateMetadata({
       tags: project.tags,
     },
     twitter: {
-      card: "summary",
+      card: "summary_large_image",
       title: project.title,
       description: project.description,
     },
@@ -99,6 +100,51 @@ async function ProjectArticle({
             <ProjectTags tags={project.tags} />
           </div>
         ) : null}
+
+        {project.images && project.images.length > 0 ? (
+          <div className="mt-12 space-y-8">
+            {project.images.map((image) => (
+              <figure key={image.src} className="m-0">
+                <Image
+                  src={image.src}
+                  alt={image.alt}
+                  width={image.width}
+                  height={image.height}
+                  sizes="(min-width: 768px) 48rem, 100vw"
+                  className="h-auto w-full rounded-lg border border-border bg-surface"
+                />
+                {image.caption ? (
+                  <figcaption className="mt-3 text-sm text-text-muted">
+                    {image.caption}
+                  </figcaption>
+                ) : null}
+              </figure>
+            ))}
+          </div>
+        ) : null}
+
+        {project.sections?.map((section, position) => (
+          <section
+            key={section.heading}
+            aria-labelledby={`project-section-${position}`}
+            className="mt-14 max-w-2xl"
+          >
+            <h2
+              id={`project-section-${position}`}
+              className="font-display text-3xl tracking-tight text-text"
+            >
+              {section.heading}
+            </h2>
+            {section.body.split(/\n\s*\n/).map((paragraph) => (
+              <p
+                key={paragraph}
+                className="mt-5 text-lg leading-relaxed text-text-muted"
+              >
+                {paragraph}
+              </p>
+            ))}
+          </section>
+        ))}
 
         {project.sample ? (
           <p className="mt-8 max-w-2xl rounded-lg border border-dashed border-champagne/50 bg-champagne/5 p-5 text-sm leading-relaxed text-text-muted">

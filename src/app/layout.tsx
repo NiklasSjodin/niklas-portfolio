@@ -2,7 +2,9 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono, Instrument_Serif } from "next/font/google";
 import { Footer } from "@/components/Footer";
 import { Header } from "@/components/Header";
-import { siteUrl } from "@/lib/site";
+import { getNavItems } from "@/lib/navigation";
+import { getAllNotes } from "@/lib/notes";
+import { siteName, siteTagline, siteUrl } from "@/lib/site";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -24,14 +26,29 @@ const instrumentSerif = Instrument_Serif({
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
   title: {
-    default: "Niklas — Software Engineer",
-    template: "%s · Niklas",
+    default: `${siteName} — Software Engineer`,
+    template: `%s · ${siteName}`,
   },
-  description:
-    "Personal portfolio of Niklas — software engineer focused on C#/.NET, backend engineering, APIs, testing and automation.",
+  description: `The personal site of ${siteName}. ${siteTagline} Backend work in C# and .NET, side projects, notes, and the occasional ice cream.`,
+  openGraph: {
+    type: "website",
+    siteName,
+    locale: "en_GB",
+  },
+  twitter: {
+    card: "summary_large_image",
+  },
+  alternates: {
+    types: {
+      "application/rss+xml": [{ url: "/feed.xml", title: `Notes · ${siteName}` }],
+    },
+  },
 };
 
-export default function RootLayout({ children }: LayoutProps<"/">) {
+export default async function RootLayout({ children }: LayoutProps<"/">) {
+  const notes = await getAllNotes();
+  const navItems = getNavItems({ hasNotes: notes.length > 0 });
+
   return (
     <html
       lang="en"
@@ -44,11 +61,11 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
         >
           Skip to content
         </a>
-        <Header />
+        <Header navItems={navItems} />
         <main id="main-content" className="flex-1">
           {children}
         </main>
-        <Footer />
+        <Footer hasNotes={notes.length > 0} />
       </body>
     </html>
   );

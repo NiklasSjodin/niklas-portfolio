@@ -4,6 +4,7 @@ import {
   type Project,
   type ProjectLinks,
 } from "@/types/project";
+import { showUnfinished } from "@/lib/visibility";
 
 export type { Project } from "@/types/project";
 
@@ -76,6 +77,31 @@ function readProject(project: Project, seen: Set<string>): Project {
     return invalid(slug, `"outline" must be a list of non-empty strings.`);
   }
 
+  if (
+    project.sections !== undefined &&
+    (!Array.isArray(project.sections) ||
+      project.sections.some(
+        (section) => section.heading.trim() === "" || section.body.trim() === "",
+      ))
+  ) {
+    return invalid(slug, `every entry in "sections" needs a heading and a body.`);
+  }
+  if (
+    project.images !== undefined &&
+    (!Array.isArray(project.images) ||
+      project.images.some(
+        (image) =>
+          !image.src.startsWith("/") ||
+          image.alt.trim() === "" ||
+          !(image.width > 0 && image.height > 0),
+      ))
+  ) {
+    return invalid(
+      slug,
+      `every entry in "images" needs a "/"-rooted src, alt text, width and height.`,
+    );
+  }
+
   const links = readLinks(slug, project.links);
 
   return {
@@ -86,22 +112,33 @@ function readProject(project: Project, seen: Set<string>): Project {
     status: project.status,
     sample: project.sample,
     tags: project.tags.map((tag) => tag.trim()),
+    ...(project.sections ? { sections: project.sections } : {}),
+    ...(project.images ? { images: project.images } : {}),
     ...(project.outline ? { outline: project.outline.map((item) => item.trim()) } : {}),
     ...(links ? { links } : {}),
   };
 }
 
-const projects: readonly Project[] = (() => {
+const allProjects: readonly Project[] = (() => {
   const seen = new Set<string>();
   return projectContent.map((project) => readProject(project, seen));
 })();
+
+/** Projects visible in this build: samples are left out of production. */
+const projects: readonly Project[] = allProjects.filter(
+  (project) => showUnfinished || !project.sample,
+);
 
 export function getAllProjects(): Project[] {
   return [...projects];
 }
 
+/**
+ * Every project's slug, samples included. Used for `generateStaticParams`, so
+ * a hidden sample is prerendered as a 404 rather than resolved on request.
+ */
 export function getProjectSlugs(): string[] {
-  return projects.map((project) => project.slug);
+  return allProjects.map((project) => project.slug);
 }
 
 /**

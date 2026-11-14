@@ -6,7 +6,7 @@ import { Section } from "@/components/Section";
 export const metadata: Metadata = {
   title: "About",
   description:
-    "About Niklas — a software engineer driven by curiosity, working mainly with backend development and .NET.",
+    "About Niklas Sjödin — a software engineer driven by curiosity, working mainly with backend development and .NET.",
 };
 
 type Interest = {
@@ -78,7 +78,7 @@ export default function AboutPage() {
             <div className="relative aspect-[3/4] overflow-hidden rounded-sm border border-border bg-surface">
               <Image
                 src="/niklas.jpg"
-                alt="Portrait of Niklas"
+                alt="Portrait of Niklas Sjödin"
                 fill
                 priority
                 sizes="(min-width: 1024px) 20rem, (min-width: 768px) 18rem, 100vw"

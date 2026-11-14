@@ -39,10 +39,10 @@ export async function generateMetadata({
       description: note.description,
       publishedTime: note.date,
       tags: note.tags,
-      authors: ["Niklas"],
+      authors: ["Niklas Sjödin"],
     },
     twitter: {
-      card: "summary",
+      card: "summary_large_image",
       title: note.title,
       description: note.description,
     },

@@ -5,7 +5,8 @@ import { usePathname } from "next/navigation";
 import { Menu, X } from "lucide-react";
 import { useEffect, useId, useState } from "react";
 import { Container } from "@/components/Container";
-import { navItems } from "@/lib/navigation";
+import type { NavItem } from "@/lib/navigation";
+import { siteName } from "@/lib/site";
 
 function linkClasses(active: boolean) {
   return [
@@ -15,7 +16,15 @@ function linkClasses(active: boolean) {
   ].join(" ");
 }
 
-export function Header() {
+type HeaderProps = {
+  navItems: readonly NavItem[];
+};
+
+function isActive(pathname: string, href: string) {
+  return href === "/" ? pathname === "/" : pathname.startsWith(href);
+}
+
+export function Header({ navItems }: HeaderProps) {
   const pathname = usePathname();
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
@@ -66,13 +75,13 @@ export function Header() {
           className="font-mono text-sm tracking-[0.18em] text-champagne uppercase transition-colors hover:text-text focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ring"
           onClick={() => setOpen(false)}
         >
-          Niklas
+          {siteName}
         </Link>
 
         <nav aria-label="Primary" className="hidden md:block">
           <ul className="flex items-center gap-1">
             {navItems.map((item) => {
-              const active = pathname === item.href;
+              const active = isActive(pathname, item.href);
 
               return (
                 <li key={item.href}>
@@ -107,7 +116,7 @@ export function Header() {
             <Container className="py-4">
               <ul className="flex flex-col gap-1">
                 {navItems.map((item) => {
-                  const active = pathname === item.href;
+                  const active = isActive(pathname, item.href);
 
                   return (
                     <li key={item.href}>

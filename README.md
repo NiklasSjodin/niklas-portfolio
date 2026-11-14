@@ -1,6 +1,6 @@
 # Niklas — Portfolio
 
-Personal developer portfolio built with Next.js (App Router), TypeScript, and Tailwind CSS.
+Personal website of Niklas Sjödin, built with Next.js (App Router), TypeScript, and Tailwind CSS.
 
 ## Stack
 
@@ -37,8 +37,19 @@ Open [http://localhost:3000](http://localhost:3000).
 - `src/components` — reusable UI (`Container`, `Button`, `Section`, navigation, note and project components)
 - `src/content/notes` — Notes, one `.mdx` file per note
 - `src/content/projects.ts` — project entries
+- `src/content/now.ts` — the "Currently" list (homepage and `/now`) and the latest ice cream tasting
 - `src/types/project.ts` — the `Project` model
-- `src/lib` — shared constants (navigation, site) and the notes/projects loaders
+- `src/lib` — shared constants (navigation, site), the notes/projects loaders, and the share-image renderer
+- `src/app/opengraph-image.tsx`, `src/app/*/[slug]/opengraph-image.tsx` — link preview images
+- `src/app/feed.xml`, `robots.ts`, `sitemap.ts` — RSS feed of published notes, robots and sitemap
+
+## Drafts and samples
+
+Starter-draft notes and sample projects show up while running `npm run dev`
+and are left out of production builds, so the live site only shows finished
+work. Their URLs return 404 in production. To preview a production build with
+them, run `SHOW_DRAFTS=true npm run build`. The Notes link disappears from the
+menu until at least one note is published.
 
 No database, CMS, authentication, or backend API is included.
 
@@ -79,3 +90,20 @@ the URL (`developer-assistant` is `/projects/developer-assistant`). Set
 `sample` to `false` once an entry describes real work. Add `links.github` or
 `links.demo` only when that URL exists; leave them out otherwise. Invalid
 entries fail the build and name the slug.
+
+A project page can have a write-up and screenshots:
+
+- `sections`: `{ heading, body }` blocks; separate paragraphs in `body` with a blank line.
+- `images`: `{ src, alt, width, height, caption? }`; put the files in
+  `public/projects/<slug>/` and use `src: "/projects/<slug>/file.png"`.
+
+## Now page and tasting
+
+Edit `src/content/now.ts` and bump `nowUpdated` when the list changes. Set
+`latestTasting` to a real Glass Atlas entry to show a "Latest tasting" card on
+the homepage; it is hidden while `undefined`.
+
+## Contact email
+
+Set `siteContact.email` in `src/lib/site.ts` to show an email row on the
+Contact page.

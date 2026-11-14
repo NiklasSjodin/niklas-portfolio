@@ -8,6 +8,8 @@ import {
 
 type ProjectCardProps = {
   project: Project;
+  /** Use "h3" when the card sits under another h2, e.g. on the homepage. */
+  headingLevel?: "h2" | "h3";
 };
 
 export function ProjectStatusLabel({ status }: { status: ProjectStatus }) {
@@ -50,7 +52,7 @@ export function ProjectTags({ tags }: { tags: readonly string[] }) {
  * One project on the index. The title link covers the card, so the whole
  * surface is clickable without nesting links.
  */
-export function ProjectCard({ project }: ProjectCardProps) {
+export function ProjectCard({ project, headingLevel: Heading = "h2" }: ProjectCardProps) {
   return (
     <article className="group relative flex h-full flex-col rounded-lg border border-border bg-surface p-7 transition-colors duration-300 hover:border-accent sm:p-9">
       <div className="flex items-start justify-between gap-4">
@@ -66,14 +68,14 @@ export function ProjectCard({ project }: ProjectCardProps) {
         />
       </div>
 
-      <h2 className="mt-4 font-display text-3xl tracking-tight text-text text-balance transition-colors duration-300 group-hover:text-champagne">
+      <Heading className="mt-4 font-display text-3xl tracking-tight text-text text-balance transition-colors duration-300 group-hover:text-champagne">
         <Link
           href={`/projects/${project.slug}`}
           className="outline-none after:absolute after:inset-0 focus-visible:after:outline-2 focus-visible:after:-outline-offset-2 focus-visible:after:outline-ring"
         >
           {project.title}
         </Link>
-      </h2>
+      </Heading>
 
       <p className="mt-3 flex-1 leading-relaxed text-text-muted">
         {project.summary}

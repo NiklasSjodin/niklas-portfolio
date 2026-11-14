@@ -2,17 +2,16 @@
 
 import { useState } from "react";
 import { NoteCard } from "@/components/NoteCard";
-import {
-  noteCategories,
-  type Note,
-  type NoteCategory,
-} from "@/lib/note-model";
+import { noteCategories, type Note, type NoteCategory } from "@/lib/note-model";
 
 type NoteIndexProps = {
   notes: Note[];
 };
 
 type Filter = NoteCategory | "all";
+
+/** The category menu only earns its place once there are enough notes to sort. */
+const MIN_NOTES_FOR_FILTER = 8;
 
 function menuItemClass(active: boolean) {
   return [
@@ -31,9 +30,7 @@ function menuItemClass(active: boolean) {
 export function NoteIndex({ notes }: NoteIndexProps) {
   const [filter, setFilter] = useState<Filter>("all");
   const visible =
-    filter === "all"
-      ? notes
-      : notes.filter((note) => note.category === filter);
+    filter === "all" ? notes : notes.filter((note) => note.category === filter);
 
   const summary =
     visible.length === 0
@@ -42,35 +39,39 @@ export function NoteIndex({ notes }: NoteIndexProps) {
         ? `Showing all ${notes.length} notes.`
         : `Showing ${visible.length} ${visible.length === 1 ? "note" : "notes"} in ${filter}.`;
 
+  const showFilter = notes.length >= MIN_NOTES_FOR_FILTER;
+
   return (
     <>
-      <nav aria-label="Categories" className="mt-12 max-w-2xl sm:mt-16">
-        <ul className="flex flex-wrap items-baseline gap-x-8 gap-y-4">
-          <li className="flex items-center gap-8">
-            <button
-              type="button"
-              aria-pressed={filter === "all"}
-              onClick={() => setFilter("all")}
-              className={menuItemClass(filter === "all")}
-            >
-              All
-            </button>
-            <span aria-hidden className="h-3 w-px bg-border" />
-          </li>
-          {noteCategories.map((category) => (
-            <li key={category}>
+      {showFilter ? (
+        <nav aria-label="Categories" className="mt-12 max-w-2xl sm:mt-16">
+          <ul className="flex flex-wrap items-baseline gap-x-8 gap-y-4">
+            <li className="flex items-center gap-8">
               <button
                 type="button"
-                aria-pressed={filter === category}
-                onClick={() => setFilter(category)}
-                className={menuItemClass(filter === category)}
+                aria-pressed={filter === "all"}
+                onClick={() => setFilter("all")}
+                className={menuItemClass(filter === "all")}
               >
-                {category}
+                All
               </button>
+              <span aria-hidden className="h-3 w-px bg-border" />
             </li>
-          ))}
-        </ul>
-      </nav>
+            {noteCategories.map((category) => (
+              <li key={category}>
+                <button
+                  type="button"
+                  aria-pressed={filter === category}
+                  onClick={() => setFilter(category)}
+                  className={menuItemClass(filter === category)}
+                >
+                  {category}
+                </button>
+              </li>
+            ))}
+          </ul>
+        </nav>
+      ) : null}
 
       <p className="sr-only" aria-live="polite">
         {summary}
@@ -79,7 +80,7 @@ export function NoteIndex({ notes }: NoteIndexProps) {
       {visible.length > 0 ? (
         <ol
           aria-label={filter === "all" ? "All notes" : `Notes in ${filter}`}
-          className="mt-8 divide-y divide-border border-y border-border sm:mt-10"
+          className={`divide-y divide-border border-y border-border ${showFilter ? "mt-8 sm:mt-10" : "mt-12 sm:mt-16"}`}
         >
           {visible.map((note) => (
             <li key={note.slug}>

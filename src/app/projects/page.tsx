@@ -6,7 +6,7 @@ import { getAllProjects } from "@/lib/projects";
 export const metadata: Metadata = {
   title: "Projects",
   description:
-    "Selected software projects by Niklas, including sample outlines that will be replaced with real work.",
+    "Side projects by Niklas Sjödin: what each one is, how it is built and where it stands.",
   alternates: { canonical: "/projects" },
 };
 
@@ -27,8 +27,8 @@ export default function ProjectsPage() {
           Projects
         </h1>
         <p className="mt-5 text-lg leading-relaxed text-text-muted">
-          Things I build and explore: backend systems, tooling and automation.
-          Each entry is a short account of what it is and where it stands.
+          Things I build and explore in my own time. Each entry is a short
+          account of what it is and where it stands.
         </p>
         {hasSamples ? (
           <p className="mt-4 text-sm leading-relaxed text-text-muted">
@@ -39,7 +39,9 @@ export default function ProjectsPage() {
       </header>
 
       {projects.length > 0 ? (
-        <ul className="mt-14 grid gap-6 sm:mt-20 sm:grid-cols-2">
+        <ul
+          className={`mt-14 grid gap-6 sm:mt-20 ${projects.length > 1 ? "sm:grid-cols-2" : "max-w-2xl"}`}
+        >
           {projects.map((project) => (
             <li key={project.slug} className="min-w-0">
               <ProjectCard project={project} />
