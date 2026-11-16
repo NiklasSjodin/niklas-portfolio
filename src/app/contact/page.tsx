@@ -6,7 +6,7 @@ import { siteContact } from "@/lib/site";
 export const metadata: Metadata = {
   title: "Contact",
   description:
-    "Contact Niklas Sjödin — backend engineer working with .NET, integrations and APIs.",
+    "Get in touch with Niklas Sjödin about backend and integration work, software, or Home Assistant.",
 };
 
 export default function ContactPage() {

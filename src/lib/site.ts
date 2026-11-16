@@ -11,6 +11,9 @@ export const siteTagline = "Curious by default.";
 /** Combined line for root OG image subtitle. */
 export const siteHeroLine = `${siteHeadline}. ${siteTagline}`;
 
+/** Default meta description for the site (layout, JSON-LD). */
+export const siteDescription = `The personal site of ${siteName}. Backend engineer focused on .NET and integrations. Side projects and how to get in touch.`;
+
 export const siteContact: {
   /** Shown on the Contact page when set. */
   email?: string;
