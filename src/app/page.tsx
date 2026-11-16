@@ -4,10 +4,14 @@ import { ArrowRight, ArrowUpRight, Mail } from "lucide-react";
 import { Button } from "@/components/Button";
 import { ProjectCard } from "@/components/ProjectCard";
 import { Section } from "@/components/Section";
+import { SkillList } from "@/components/SkillList";
 import { TastingCard } from "@/components/TastingCard";
 import { latestTasting, nowItems, nowUpdated } from "@/content/now";
+import { professionalSkills } from "@/content/skills";
 import { formatNoteDate, getAllNotes } from "@/lib/notes";
 import { getAllProjects } from "@/lib/projects";
+
+const homeFocusItem = nowItems[0];
 
 const eyebrow = "mb-4 font-mono text-xs tracking-[0.22em] text-accent uppercase";
 
@@ -77,6 +81,23 @@ export default async function HomePage() {
         </div>
       </Section>
 
+      <Section ariaLabelledBy="skills-heading" className="border-t border-border">
+        <div className="max-w-3xl">
+          <p className={eyebrow}>At work</p>
+          <h2
+            id="skills-heading"
+            className="font-display text-3xl leading-tight tracking-tight text-text sm:text-4xl"
+          >
+            What I work with
+          </h2>
+          <p className="mt-5 max-w-2xl text-lg leading-relaxed text-text-muted">
+            The kinds of tools and problems that show up in my day job and side
+            builds — not a buzzword wall, just what I reach for often.
+          </p>
+          <SkillList skills={professionalSkills} />
+        </div>
+      </Section>
+
       <Section ariaLabelledBy="currently-heading" className="border-t border-border">
         <div className="grid gap-10 md:grid-cols-[minmax(0,1fr)_minmax(0,1.6fr)] md:gap-20">
           <div>
@@ -87,48 +108,42 @@ export default async function HomePage() {
             >
               What I’m up to
             </h2>
-            <p className="mt-5 text-text-muted">
-              Updated {formatNoteDate(nowUpdated)}.{" "}
+            <p className="mt-5 text-lg leading-relaxed text-text-muted">
               <Link
                 href="/now"
                 className="text-champagne underline decoration-champagne/40 underline-offset-4 transition-colors hover:decoration-champagne"
               >
-                More on the now page
-              </Link>
-              .
+                See the full snapshot
+              </Link>{" "}
+              — updated {formatNoteDate(nowUpdated)}.
             </p>
           </div>
 
           <ul className="border-t border-border">
-            {nowItems.map((item) => (
-              <li
-                key={item.label}
-                className="group relative grid gap-2 border-b border-border py-7 sm:grid-cols-[7rem_1fr_auto] sm:gap-6"
-              >
-                <span className="font-mono text-xs tracking-[0.2em] text-accent uppercase sm:pt-1.5">
-                  {item.label}
-                </span>
-                <p className="text-lg leading-relaxed text-text">
-                  {item.href ? (
-                    <Link
-                      href={item.href}
-                      className="outline-none transition-colors group-hover:text-champagne after:absolute after:inset-0 focus-visible:after:outline-2 focus-visible:after:outline-offset-4 focus-visible:after:outline-ring"
-                    >
-                      {item.summary}
-                    </Link>
-                  ) : (
-                    item.summary
-                  )}
-                </p>
-                {item.href ? (
-                  <ArrowUpRight
-                    aria-hidden
-                    size={18}
-                    className="hidden text-text-muted transition-colors group-hover:text-champagne sm:mt-1.5 sm:block"
-                  />
-                ) : null}
-              </li>
-            ))}
+            <li className="group relative grid gap-2 border-b border-border py-7 sm:grid-cols-[7rem_1fr_auto] sm:gap-6">
+              <span className="font-mono text-xs tracking-[0.2em] text-accent uppercase sm:pt-1.5">
+                {homeFocusItem.label}
+              </span>
+              <p className="text-lg leading-relaxed text-text">
+                {homeFocusItem.href ? (
+                  <Link
+                    href={homeFocusItem.href}
+                    className="outline-none transition-colors group-hover:text-champagne after:absolute after:inset-0 focus-visible:after:outline-2 focus-visible:after:outline-offset-4 focus-visible:after:outline-ring"
+                  >
+                    {homeFocusItem.summary}
+                  </Link>
+                ) : (
+                  homeFocusItem.summary
+                )}
+              </p>
+              {homeFocusItem.href ? (
+                <ArrowUpRight
+                  aria-hidden
+                  size={18}
+                  className="hidden text-text-muted transition-colors group-hover:text-champagne sm:mt-1.5 sm:block"
+                />
+              ) : null}
+            </li>
           </ul>
         </div>
       </Section>

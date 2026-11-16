@@ -6,7 +6,7 @@ import { Section } from "@/components/Section";
 export const metadata: Metadata = {
   title: "About",
   description:
-    "About Niklas Sjödin — a software engineer driven by curiosity, working mainly with backend development and .NET.",
+    "About Niklas Sjödin — backend engineer working with .NET, Azure, integrations and APIs.",
 };
 
 type Interest = {
@@ -20,7 +20,7 @@ const interests: Interest[] = [
   {
     index: "01",
     title: "Training & fitness",
-    body: "I enjoy strength training and working towards getting a little stronger, better and more consistent. I like having something to work towards and seeing progress over time.",
+    body: "Strength training — something to show up for outside the screen.",
     icon: Dumbbell,
   },
   {
@@ -50,20 +50,20 @@ export default function AboutPage() {
               id="about-heading"
               className="max-w-2xl font-display text-5xl leading-[1.08] tracking-tight text-text sm:text-6xl"
             >
-              A software engineer, driven by curiosity.
+              Backend engineer, curious by default.
             </h1>
             <div className="mt-10 max-w-2xl space-y-6 text-lg leading-relaxed text-text-muted">
               <p>
                 I’m{" "}
-                <span className="text-text">Niklas</span>, a Software Engineer
+                <span className="text-text">Niklas</span>, a software engineer
                 who enjoys building things, solving problems and exploring how
                 technology can make everyday life a little better.
               </p>
               <p>
-                I mainly work with backend development and the .NET ecosystem.
-                I enjoy understanding how systems fit together, building
-                integrations and finding simple, thoughtful solutions to complex
-                problems.
+                I mainly work with backend development and the .NET ecosystem —
+                HTTP APIs, Azure Functions, data flows between systems, and the
+                CI/CD and tests that keep them dependable when upstream data is
+                messy.
               </p>
               <p>
                 I’m naturally curious and like learning by doing. Whether it’s

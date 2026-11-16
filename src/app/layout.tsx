@@ -4,7 +4,7 @@ import { Footer } from "@/components/Footer";
 import { Header } from "@/components/Header";
 import { getNavItems } from "@/lib/navigation";
 import { getAllNotes } from "@/lib/notes";
-import { siteName, siteTagline, siteUrl } from "@/lib/site";
+import { siteHeadline, siteName, siteTagline, siteUrl } from "@/lib/site";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -26,10 +26,10 @@ const instrumentSerif = Instrument_Serif({
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
   title: {
-    default: `${siteName} — Software Engineer`,
+    default: `${siteName} — Backend Engineer`,
     template: `%s · ${siteName}`,
   },
-  description: `The personal site of ${siteName}. ${siteTagline} Backend work in C# and .NET, side projects, notes, and the occasional ice cream.`,
+  description: `The personal site of ${siteName}. ${siteHeadline} ${siteTagline} Side projects, notes, and how to get in touch.`,
   openGraph: {
     type: "website",
     siteName,

@@ -2,7 +2,11 @@ export const siteUrl = "https://www.niklasjodin.se";
 
 export const siteName = "Niklas Sjödin";
 
-export const siteTagline = "Software engineer. Curious by default.";
+/** Primary headline on the home page and in default metadata. */
+export const siteHeadline = "Backend engineer · .NET & integrations";
+
+/** Secondary line — personal tone without replacing the professional headline. */
+export const siteTagline = "Curious by default.";
 
 export const siteContact: {
   /** Shown on the Contact page when set. */

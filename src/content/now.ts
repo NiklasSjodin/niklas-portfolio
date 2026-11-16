@@ -1,6 +1,6 @@
 /**
- * What I'm focused on right now. Shown as "Currently" on the homepage and in
- * full on `/now`. Update `updated` whenever the list changes.
+ * What I'm focused on right now. The homepage highlights the first item only;
+ * the full list lives on `/now`. Update `nowUpdated` whenever the list changes.
  */
 
 export type NowItem = {
