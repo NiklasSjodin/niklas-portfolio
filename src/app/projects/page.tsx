@@ -6,7 +6,7 @@ import { getAllProjects } from "@/lib/projects";
 export const metadata: Metadata = {
   title: "Projects",
   description:
-    "Side projects by Niklas Sjödin: what each one is, how it is built and where it stands.",
+    "Projects by Niklas Sjödin — what each build is, how it is built and where it stands.",
   alternates: { canonical: "/projects" },
 };
 

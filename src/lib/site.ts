@@ -2,11 +2,14 @@ export const siteUrl = "https://www.niklasjodin.se";
 
 export const siteName = "Niklas Sjödin";
 
-/** Primary headline on the home page and in default metadata. */
+/** Primary line on the home hero, below the name. */
 export const siteHeadline = "Backend engineer · .NET & integrations";
 
-/** Secondary line — personal tone without replacing the professional headline. */
+/** Secondary home hero line, smaller type. */
 export const siteTagline = "Curious by default.";
+
+/** Combined line for root OG image subtitle. */
+export const siteHeroLine = `${siteHeadline}. ${siteTagline}`;
 
 export const siteContact: {
   /** Shown on the Contact page when set. */

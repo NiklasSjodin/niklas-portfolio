@@ -12,6 +12,7 @@ import {
 import { ProjectLinks } from "@/components/ProjectLinks";
 import { Section } from "@/components/Section";
 import { getProjectBySlug, getProjectSlugs } from "@/lib/projects";
+import { siteName, siteUrl } from "@/lib/site";
 
 export function generateStaticParams() {
   return getProjectSlugs().map((slug) => ({ slug }));
@@ -41,11 +42,23 @@ export async function generateMetadata({
       title: project.title,
       description: project.description,
       tags: project.tags,
+      images: [
+        {
+          url: `${siteUrl}${url}/opengraph-image`,
+          width: 1200,
+          height: 630,
+          alt: `${project.title} — project by ${siteName}`,
+        },
+      ],
     },
     twitter: {
       card: "summary_large_image",
       title: project.title,
       description: project.description,
+      images: {
+        url: `${siteUrl}${url}/opengraph-image`,
+        alt: `${project.title} — project by ${siteName}`,
+      },
     },
   };
 }

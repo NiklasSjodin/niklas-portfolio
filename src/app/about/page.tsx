@@ -1,38 +1,52 @@
 import type { Metadata } from "next";
+import type { ReactNode } from "react";
 import Image from "next/image";
+import Link from "next/link";
 import { Dumbbell, House, IceCreamCone } from "lucide-react";
 import { Section } from "@/components/Section";
 
 export const metadata: Metadata = {
   title: "About",
   description:
-    "About Niklas Sjödin — backend engineer working with .NET, Azure, integrations and APIs.",
+    "About Niklas Sjödin — backend engineer focused on .NET integrations, Azure Functions and dependable data flows.",
 };
 
 type Interest = {
   index: string;
   title: string;
-  body: string;
+  body: ReactNode;
   icon: typeof Dumbbell;
 };
 
 const interests: Interest[] = [
   {
     index: "01",
-    title: "Training & fitness",
-    body: "Strength training — something to show up for outside the screen.",
+    title: "Training",
+    body: "Strength training, working towards getting a little stronger and more consistent.",
     icon: Dumbbell,
   },
   {
     index: "02",
     title: "Technology beyond work",
-    body: "I’m a bit of a technology enthusiast even outside my day job. Smart home automation, Home Assistant and finding clever ways to connect everyday devices are things I genuinely enjoy experimenting with.",
+    body: "Smart home automation is what I experiment with most outside my day job. I enjoy finding clever ways to connect everyday devices with Home Assistant.",
     icon: House,
   },
   {
     index: "03",
     title: "A soft spot for ice cream",
-    body: "Not everything has to be technical or productive. I’m also a big ice cream enthusiast. A good scoop of ice cream is hard to turn down.",
+    body: (
+      <>
+        Not everything has to be productive. I rate ice cream seriously enough
+        that I built an app for it:{" "}
+        <Link
+          href="/projects/glass-atlas"
+          className="text-champagne underline decoration-champagne/40 underline-offset-4 transition-colors hover:decoration-champagne"
+        >
+          Glass Atlas
+        </Link>
+        .
+      </>
+    ),
     icon: IceCreamCone,
   },
 ];
@@ -50,26 +64,21 @@ export default function AboutPage() {
               id="about-heading"
               className="max-w-2xl font-display text-5xl leading-[1.08] tracking-tight text-text sm:text-6xl"
             >
-              Backend engineer, curious by default.
+              A backend engineer, driven by curiosity.
             </h1>
             <div className="mt-10 max-w-2xl space-y-6 text-lg leading-relaxed text-text-muted">
               <p>
-                I’m{" "}
+                I&rsquo;m{" "}
                 <span className="text-text">Niklas</span>, a software engineer
-                who enjoys building things, solving problems and exploring how
-                technology can make everyday life a little better.
+                focused on backend development and integrations in the .NET
+                ecosystem. I like understanding how systems fit together and
+                making them reliable, observable and simple to run.
               </p>
               <p>
-                I mainly work with backend development and the .NET ecosystem —
-                HTTP APIs, Azure Functions, data flows between systems, and the
-                CI/CD and tests that keep them dependable when upstream data is
-                messy.
-              </p>
-              <p>
-                I’m naturally curious and like learning by doing. Whether it’s
-                exploring a new technology, improving a development workflow or
-                starting a side project, I enjoy the process just as much as the
-                result.
+                I&rsquo;m naturally curious and like learning by doing. Whether
+                it&rsquo;s exploring a new technology, improving a development
+                workflow or starting a side project, I enjoy the process just as
+                much as the result.
               </p>
             </div>
           </div>
@@ -86,6 +95,31 @@ export default function AboutPage() {
               />
             </div>
           </figure>
+        </div>
+      </Section>
+
+      <Section ariaLabelledBy="at-work-heading" className="border-t border-border">
+        <div className="max-w-2xl">
+          <h2
+            id="at-work-heading"
+            className="font-display text-3xl leading-tight tracking-tight text-text sm:text-4xl"
+          >
+            At work
+          </h2>
+          <div className="mt-6 space-y-6 text-lg leading-relaxed text-text-muted">
+            <p>
+              I build integrations that move and process data between systems.
+            </p>
+            <p>
+              Day to day that means C# and .NET, Azure Functions, CI/CD
+              pipelines in Azure DevOps and containerised services running on
+              Linux.
+            </p>
+            <p>
+              I like integrations that fail loudly, are easy to debug and are
+              boring to operate.
+            </p>
+          </div>
         </div>
       </Section>
 

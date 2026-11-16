@@ -10,6 +10,7 @@ import { latestTasting, nowItems, nowUpdated } from "@/content/now";
 import { professionalSkills } from "@/content/skills";
 import { formatNoteDate, getAllNotes } from "@/lib/notes";
 import { getAllProjects } from "@/lib/projects";
+import { siteHeadline, siteTagline } from "@/lib/site";
 
 const homeFocusItem = nowItems[0];
 
@@ -55,8 +56,11 @@ export default async function HomePage() {
               Niklas Sjödin
             </h1>
 
-            <p className="mt-5 max-w-xl font-display text-2xl text-champagne sm:text-3xl">
-              Software engineer. Curious by default.
+            <p className="mt-5 max-w-xl font-display text-2xl text-text sm:text-3xl">
+              {siteHeadline}
+            </p>
+            <p className="mt-3 max-w-xl font-display text-xl text-champagne sm:text-2xl">
+              {siteTagline}
             </p>
 
             <p className="mt-8 max-w-2xl text-lg leading-relaxed text-text-muted">
