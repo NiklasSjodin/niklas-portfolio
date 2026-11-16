@@ -58,9 +58,7 @@ export default async function HomePage() {
 
             <p className="mt-5 max-w-xl font-display text-2xl text-text sm:text-3xl">
               {siteHeadline}
-            </p>
-            <p className="mt-3 max-w-xl font-display text-xl text-champagne sm:text-2xl">
-              {siteTagline}
+              <span className="text-champagne"> · {siteTagline}</span>
             </p>
 
             <p className="mt-8 max-w-2xl text-lg leading-relaxed text-text-muted">

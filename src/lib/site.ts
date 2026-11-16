@@ -3,7 +3,7 @@ export const siteUrl = "https://www.niklasjodin.se";
 export const siteName = "Niklas Sjödin";
 
 /** Primary line on the home hero, below the name. */
-export const siteHeadline = "Backend engineer · .NET & integrations";
+export const siteHeadline = "Backend engineer";
 
 /** Secondary home hero line, smaller type. */
 export const siteTagline = "Curious by default.";
@@ -12,7 +12,7 @@ export const siteTagline = "Curious by default.";
 export const siteHeroLine = `${siteHeadline}. ${siteTagline}`;
 
 /** Default meta description for the site (layout, JSON-LD). */
-export const siteDescription = `The personal site of ${siteName}. Backend engineer focused on .NET and integrations. Side projects and how to get in touch.`;
+export const siteDescription = `The personal site of ${siteName}. Backend engineer · .NET & integrations. ${siteTagline} Side projects and how to get in touch.`;
 
 export const siteContact: {
   /** Shown on the Contact page when set. */

@@ -15,7 +15,7 @@ export function Footer({ hasNotes }: FooterProps) {
     <footer className="mt-auto border-t border-border">
       <Container className="flex flex-col gap-4 py-8 text-sm text-text-muted sm:flex-row sm:items-center sm:justify-between">
         <p>
-          © 2026 {siteName}. Powered by curiosity and ice cream.
+          © 2026 {siteName}.
         </p>
         <nav aria-label="Contact and feeds" className="flex flex-wrap items-center gap-x-5 gap-y-2">
           {siteContact.email ? (
