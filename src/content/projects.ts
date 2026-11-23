@@ -85,14 +85,39 @@ export const projects: readonly Project[] = [
     status: "in-progress",
     sample: false,
     tags: ["nextjs", "typescript", "prisma", "postgresql", "testing"],
+    images: [
+      {
+        src: "/projects/home-inventory/inventory.jpg",
+        alt: "The Home Inventory list view, in Swedish: search, filters for category, owner, condition, type and tags, and a list of Christmas decorations with their owner, category and tags.",
+        width: 2560,
+        height: 1960,
+        caption: "The inventory list. The app is in Swedish, and all screenshots use demo data, not our real inventory.",
+      },
+    ],
     sections: [
       {
         heading: "Why it exists",
         body: "Christmas decorations are a good place to start: they come out once a year, and by then it is easy to forget what there is and which box it is in. From there, Home Inventory is designed to grow into a record of what we own, who it belongs to and where it is stored.\n\nIt is local-first. The data stays on my own computer, in PostgreSQL and local files, and only finished backups leave the machine.",
       },
       {
-        heading: "What it does so far",
-        body: "Items can be individual things or groups with a quantity, like a box of twelve baubles, and each one has an owner, a condition and an optional category. Categories nest up to five levels deep and can be renamed, moved and archived, with rules that stop cycles and keep anything still in use from being deleted.\n\nItems carry reusable tags, and the Discover view searches names and descriptions and filters by category, owner, condition, type and tags, where an item must have every selected tag. The interface is in Swedish, since it is built for our household.",
+        heading: "Items and categories",
+        body: "Items can be individual things or groups with a quantity, like a box of twelve baubles, and each one has an owner, a condition and an optional category. Categories nest up to five levels deep and can be renamed, moved and archived, with rules that stop cycles and keep anything still in use from being deleted.",
+        image: {
+          src: "/projects/home-inventory/categories.jpg",
+          alt: "The Home Inventory category tree: Jul with Advent, Belysning, Julgran (with Kulor och hängen nested inside) and Textilier, and an empty Påsk category, each with item counts.",
+          width: 2560,
+          height: 1426,
+        },
+      },
+      {
+        heading: "Tags and search",
+        body: "Items carry reusable tags, and the inventory view searches names and descriptions and filters by category, owner, condition, type and tags. Selecting several tags shows only the items that have all of them, and the filters live in the URL. The interface is in Swedish, since it is built for our household.",
+        image: {
+          src: "/projects/home-inventory/search.jpg",
+          alt: "Home Inventory filtered by the tags Ömtålig and Glas, showing the three items that have both.",
+          width: 2560,
+          height: 2224,
+        },
       },
       {
         heading: "How it is built",
