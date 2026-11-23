@@ -93,9 +93,12 @@ entries fail the build and name the slug.
 
 A project page can have a write-up and screenshots:
 
-- `sections`: `{ heading, body }` blocks; separate paragraphs in `body` with a blank line.
-- `images`: `{ src, alt, width, height, caption? }`; put the files in
-  `public/projects/<slug>/` and use `src: "/projects/<slug>/file.png"`.
+- `sections`: `{ heading, body, image? }` blocks; separate paragraphs in `body`
+  with a blank line. An optional `image` is shown under that section's text.
+- `images`: `{ src, alt, width, height, caption? }` screenshots shown at the top
+  of the page. The first one is also the cover on project cards. Put the files
+  in `public/projects/<slug>/` and use `src: "/projects/<slug>/file.jpg"`;
+  `width` and `height` are the file's pixel size.
 
 ## Now page and tasting
 

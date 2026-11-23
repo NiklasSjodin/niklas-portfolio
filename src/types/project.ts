@@ -15,20 +15,22 @@ export type ProjectLinks = {
   demo?: string;
 };
 
-/** A titled block of prose on the project page, e.g. "What it does". */
-export type ProjectSection = {
-  heading: string;
-  /** Plain text. Separate paragraphs with a blank line. */
-  body: string;
-};
-
-/** A screenshot stored in `public/`, e.g. `/projects/glass-atlas/catalog.png`. */
+/** A screenshot stored in `public/`, e.g. `/projects/glass-atlas/catalog.jpg`. */
 export type ProjectImage = {
   src: string;
   alt: string;
   width: number;
   height: number;
   caption?: string;
+};
+
+/** A titled block of prose on the project page, e.g. "What it does". */
+export type ProjectSection = {
+  heading: string;
+  /** Plain text. Separate paragraphs with a blank line. */
+  body: string;
+  /** Optional screenshot shown under this section's text. */
+  image?: ProjectImage;
 };
 
 export type Project = {
@@ -43,7 +45,10 @@ export type Project = {
   tags: string[];
   /** Optional write-up shown on the project page, in order. */
   sections?: ProjectSection[];
-  /** Optional screenshots shown on the project page, in order. */
+  /**
+   * Optional screenshots shown at the top of the project page, in order.
+   * The first one is also the cover image on project cards.
+   */
   images?: ProjectImage[];
   /**
    * Prompts for sections that still need real content. Rendered as a

@@ -2,6 +2,7 @@ import { projects as projectContent } from "@/content/projects";
 import {
   projectStatuses,
   type Project,
+  type ProjectImage,
   type ProjectLinks,
 } from "@/types/project";
 import { showUnfinished } from "@/lib/visibility";
@@ -49,6 +50,17 @@ function readLinks(slug: string, links: ProjectLinks | undefined): ProjectLinks 
   };
 }
 
+const IMAGE_RULE = `needs a "/"-rooted src, alt text, width and height.`;
+
+function isValidImage(image: ProjectImage): boolean {
+  return (
+    image.src.startsWith("/") &&
+    image.alt.trim() !== "" &&
+    image.width > 0 &&
+    image.height > 0
+  );
+}
+
 function readProject(project: Project, seen: Set<string>): Project {
   const slug = project.slug.trim();
   if (!SLUG_PATTERN.test(slug)) {
@@ -88,18 +100,12 @@ function readProject(project: Project, seen: Set<string>): Project {
   }
   if (
     project.images !== undefined &&
-    (!Array.isArray(project.images) ||
-      project.images.some(
-        (image) =>
-          !image.src.startsWith("/") ||
-          image.alt.trim() === "" ||
-          !(image.width > 0 && image.height > 0),
-      ))
+    (!Array.isArray(project.images) || !project.images.every(isValidImage))
   ) {
-    return invalid(
-      slug,
-      `every entry in "images" needs a "/"-rooted src, alt text, width and height.`,
-    );
+    return invalid(slug, `every entry in "images" ${IMAGE_RULE}`);
+  }
+  if (project.sections?.some((section) => section.image && !isValidImage(section.image))) {
+    return invalid(slug, `every image in "sections" ${IMAGE_RULE}`);
   }
 
   const links = readLinks(slug, project.links);

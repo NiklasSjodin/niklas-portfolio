@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { Suspense } from "react";
@@ -9,6 +8,7 @@ import {
   ProjectStatusLabel,
   ProjectTags,
 } from "@/components/ProjectCard";
+import { ProjectFigure } from "@/components/ProjectFigure";
 import { ProjectLinks } from "@/components/ProjectLinks";
 import { Section } from "@/components/Section";
 import { getProjectBySlug, getProjectSlugs } from "@/lib/projects";
@@ -115,23 +115,9 @@ async function ProjectArticle({
         ) : null}
 
         {project.images && project.images.length > 0 ? (
-          <div className="mt-12 space-y-8">
-            {project.images.map((image) => (
-              <figure key={image.src} className="m-0">
-                <Image
-                  src={image.src}
-                  alt={image.alt}
-                  width={image.width}
-                  height={image.height}
-                  sizes="(min-width: 768px) 48rem, 100vw"
-                  className="h-auto w-full rounded-lg border border-border bg-surface"
-                />
-                {image.caption ? (
-                  <figcaption className="mt-3 text-sm text-text-muted">
-                    {image.caption}
-                  </figcaption>
-                ) : null}
-              </figure>
+          <div className="mt-12 space-y-10">
+            {project.images.map((image, position) => (
+              <ProjectFigure key={image.src} image={image} priority={position === 0} />
             ))}
           </div>
         ) : null}
@@ -156,6 +142,9 @@ async function ProjectArticle({
                 {paragraph}
               </p>
             ))}
+            {section.image ? (
+              <ProjectFigure image={section.image} className="mt-8 md:-mr-24" />
+            ) : null}
           </section>
         ))}
 

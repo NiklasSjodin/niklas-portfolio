@@ -36,9 +36,9 @@ export const nowItems: NowItem[] = [
   {
     label: "Building",
     summary:
-      "Glass Atlas, a catalog and tasting journal for ice cream with weighted ratings.",
+      "Glass Atlas, my ice cream catalog and tasting journal with weighted ratings, rankings and preference insights.",
     detail:
-      "The catalog and the tasting journal work end to end. Next up are a dashboard, rankings and getting it deployed.",
+      "Seven milestones are done: the catalog, the tasting journal, a dashboard with rankings, favorites and a wishlist, backups for running it at home, and tags with preference insights. Now it is mostly about using it and polishing the details.",
     href: "/projects/glass-atlas",
   },
   {

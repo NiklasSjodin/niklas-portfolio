@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
 import {
@@ -53,8 +54,22 @@ export function ProjectTags({ tags }: { tags: readonly string[] }) {
  * surface is clickable without nesting links.
  */
 export function ProjectCard({ project, headingLevel: Heading = "h2" }: ProjectCardProps) {
+  // Decorative: the card's title already names the project.
+  const cover = project.images?.[0];
+
   return (
     <article className="group relative flex h-full flex-col rounded-lg border border-border bg-surface p-7 transition-colors duration-300 hover:border-accent sm:p-9">
+      {cover ? (
+        <div className="relative -mx-7 -mt-7 mb-7 aspect-[16/10] overflow-hidden rounded-t-lg border-b border-border sm:-mx-9 sm:-mt-9 sm:mb-9">
+          <Image
+            src={cover.src}
+            alt=""
+            fill
+            sizes="(min-width: 640px) 32rem, 100vw"
+            className="object-cover object-top transition-transform duration-500 group-hover:scale-[1.02]"
+          />
+        </div>
+      ) : null}
       <div className="flex items-start justify-between gap-4">
         <div className="flex flex-wrap items-center gap-x-4 gap-y-2">
           <ProjectStatusLabel status={project.status} />
