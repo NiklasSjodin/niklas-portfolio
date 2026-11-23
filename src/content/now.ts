@@ -30,15 +30,23 @@ export type Tasting = {
   note?: string;
 };
 
-export const nowUpdated = "2026-11-14";
+export const nowUpdated = "2026-11-23";
 
 export const nowItems: NowItem[] = [
   {
     label: "Building",
     summary:
+      "Home Inventory, a local-first app for keeping track of everything we own at home, starting with the Christmas decorations.",
+    detail:
+      "Three of eight milestones are done: owners, nested categories, items and groups, then tags and search. Photos are next, followed by custom attributes, storage locations, a dashboard and backups.",
+    href: "/projects/home-inventory",
+  },
+  {
+    label: "Finished",
+    summary:
       "Glass Atlas, my ice cream catalog and tasting journal with weighted ratings, rankings and preference insights.",
     detail:
-      "Seven milestones are done: the catalog, the tasting journal, a dashboard with rankings, favorites and a wishlist, backups for running it at home, and tags with preference insights. Now it is mostly about using it and polishing the details.",
+      "All seven milestones are done, so now it is mostly about using it, one scoop at a time.",
     href: "/projects/glass-atlas",
   },
   {

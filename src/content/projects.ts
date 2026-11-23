@@ -18,7 +18,7 @@ export const projects: readonly Project[] = [
       "My ice cream catalog and tasting journal: weighted ratings, rankings, price history and preference insights, running on a .NET 10 API and PostgreSQL at home.",
     description:
       "A private, single-user app for cataloguing ice cream and keeping a tasting journal. Every scoop gets a weighted score, and the dashboard turns the journal into rankings, price history and preference insights. Next.js on the front, ASP.NET Core on .NET 10 behind it, PostgreSQL underneath.",
-    status: "in-progress",
+    status: "completed",
     sample: false,
     tags: ["nextjs", "dotnet", "postgresql", "full-stack", "testing"],
     images: [
@@ -71,7 +71,36 @@ export const projects: readonly Project[] = [
       },
       {
         heading: "Where it stands",
-        body: "Seven milestones are done, from the foundation to quick-add tastings, tags and preference insights. Next on the list are a backup reminder in the app and smaller refinements. The code is private for now.",
+        body: "All seven planned milestones are done, from the foundation to quick-add tastings, tags and preference insights, and Glass Atlas is in everyday use. A few small ideas are parked for later, such as a backup reminder in the app. The code is private for now.",
+      },
+    ],
+  },
+  {
+    slug: "home-inventory",
+    title: "Home Inventory",
+    summary:
+      "A local-first inventory for everything at home, starting with the Christmas decorations: nested categories, tags, grouped items and search, on Next.js, Prisma and PostgreSQL.",
+    description:
+      "A local-first household inventory app. It starts with the Christmas decorations and is designed to grow to cover the whole home, with nested categories, tags, individual and grouped items, photos and storage locations. Next.js and Prisma on top of PostgreSQL, all running on my own computer.",
+    status: "in-progress",
+    sample: false,
+    tags: ["nextjs", "typescript", "prisma", "postgresql", "testing"],
+    sections: [
+      {
+        heading: "Why it exists",
+        body: "Christmas decorations are a good place to start: they come out once a year, and by then it is easy to forget what there is and which box it is in. From there, Home Inventory is designed to grow into a record of what we own, who it belongs to and where it is stored.\n\nIt is local-first. The data stays on my own computer, in PostgreSQL and local files, and only finished backups leave the machine.",
+      },
+      {
+        heading: "What it does so far",
+        body: "Items can be individual things or groups with a quantity, like a box of twelve baubles, and each one has an owner, a condition and an optional category. Categories nest up to five levels deep and can be renamed, moved and archived, with rules that stop cycles and keep anything still in use from being deleted.\n\nItems carry reusable tags, and the Discover view searches names and descriptions and filters by category, owner, condition, type and tags, where an item must have every selected tag. The interface is in Swedish, since it is built for our household.",
+      },
+      {
+        heading: "How it is built",
+        body: "Next.js 16 with the App Router, React 19, strict TypeScript, Tailwind CSS and shadcn/ui, with forms in React Hook Form and validation in Zod. Prisma 7 talks to PostgreSQL 17 in Docker Compose, and the important rules are enforced twice: in the service layer and again in the database with constraints and triggers.\n\nMore than 500 tests cover it: unit tests in Vitest, integration tests against a separate, guarded test database, and Playwright for the main workflows end to end.",
+      },
+      {
+        heading: "Where it stands",
+        body: "Three of eight milestones are done: the foundation, inventory management, and tags and search. Next come photos, then custom attributes per category, storage locations and containers, a dashboard, and finally backups to OneDrive and an external drive. The code is private while it is in active development.",
       },
     ],
   },
